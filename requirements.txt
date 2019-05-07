@@ -1,0 +1,6 @@
+tensorflow==1.13.1
+menpo3d==0.6.0
+mayavi==4.6.2
+opencv_python==4.1.0.25
+numpy==1.16.3
+Keras==2.2.4
