@@ -6,7 +6,7 @@ Frontal Face Tracking for Drones using Deep Reinforcement Learning
 
 # Overview
 
-- Deep Q Learning
+- Deep Q Learning + Experience Replay
 
 - Input: A frame of camera pointed at the head
 
@@ -38,12 +38,9 @@ motivation = (reward - previous reward) * (1 - reward)
 
 total reward = total reward + motivation
 
-## Deep Reinforcement Learning
+# Deep Reinforcement Learning
 
-### Deep Q Learning Agent
-
-
-### Experience Replay
+## Deep Q Learning + Experience Replay
 
 Save the following information of a run:
 - previous position of the face
@@ -68,8 +65,3 @@ A big discount value (0.9) will lead to a long-sighted agent that trusts its mem
 - Output layer with 5 nodes / possible actions: Up, Down, Left, Right, Stay
 
 - Adam Optimizer + MSE loss
-
-
-# Referneces
-
-Keras-rl https://github.com/keras-rl/keras-rl
