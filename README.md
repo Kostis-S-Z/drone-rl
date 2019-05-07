@@ -1,7 +1,7 @@
 # drone-rl
 Frontal Face Tracking for Drones using Deep Reinforcement Learning
 
-![Face tracking demo](https://github.com/Kostis-S-Z/drone-rl/drone_agent.gif)
+![Face tracking demo](drone_agent.gif)
 
 
 # Overview
