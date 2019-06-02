@@ -32,9 +32,9 @@ num_of_steps = 50  # number of steps to take in each epoch
 num_actions = 5  # move +-vertical / +-horizontal, stay still
 deg_mv = 5  # movement by degrees
 epochs = 100  # episodes
-max_memory = 1000  # number of observations that can be stored in agent's memory
-hidden_size = 120  # number of neurons
-batch_size = 100  # number of images to process in each epoch
+max_memory = 10000  # number of observations that can be stored in agent's memory
+hidden_size = 64  # number of neurons
+batch_size = 32  # number of images to process in each epoch
 grid_size = 64  # number of pixels of image (64x64)
 
 
@@ -46,8 +46,8 @@ def run():
 
     model = Sequential()
     model.add(Dense(hidden_size, input_shape=(grid_size, grid_size, 3), activation='relu'))
-    model.add(Dense(hidden_size, activation='relu'))
-    model.add(Dense(hidden_size, activation='relu'))
+    # model.add(Dense(hidden_size, activation='relu'))
+    # model.add(Dense(hidden_size, activation='relu'))
     model.add(Flatten())
     model.add(Dense(num_actions))
     model.compile(loss="mean_squared_error", optimizer='adam')
@@ -70,9 +70,9 @@ def run():
 
         env.init_environment()
 
-        # if (explore > 0.2 and i%25==0):
-        #    explore -= 0.1
-        explore = explore * math.exp(-(exp_decay_rate * i))
+        if explore > 0.2 and i % 10 == 0:
+            explore -= 0.1
+        # explore = explore * math.exp(-(exp_decay_rate * i))
 
         # get initial input
         input_t = env.get_camera_pixels()
@@ -121,7 +121,7 @@ def run():
         if epoch_reward > max_reward:
             max_reward = epoch_reward
 
-        # print("Epoch {} | Explore: {} | Loss {:.4f} | Reward {:.2f}".format(i, explore, loss, epoch_reward))
+        print("Epoch {} | Explore: {} | Loss {:.4f} | Reward {:.2f}".format(i, explore, loss, epoch_reward))
         if i % 10 == 0:
             stop_ep = time.clock()
             print("Epoch {}/{}| Explore: {} | Loss {:.4f} | Max Reward: {:.2f}/70.40".format(i, epochs, explore, loss,
